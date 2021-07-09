@@ -120,6 +120,7 @@ function setRoute(id,route_name)
 
     // Create a Service Request.
     var request = new ROSLIB.ServiceRequest({
+        choice: 0, // choice '0' indicates that a routeID is being provided for this setActiveRoute service request
         routeID: selectedRouteid
     });
 
