@@ -63,12 +63,13 @@ function subscribeToPlatoonInfo ()
                 platooning_state = 'N/A';
                 break;
         }
+
         updatePlatooningInfo(platooning_state,  //host vehicle platoon state
                             (message.host_platoon_position+1) + ' out of '+ message.size +' vehicles',  //host vehicle position variable is index value, but actual platoon position = index + 1
-                            message.desired_gap, //Desired Gap
-                            message.actual_gap, //actual gap
-                            message.leader_id, //leader_vehicle_id = leader_id
-                            message.platoon_id, //platoon_id
+                             message.desired_gap==undefined ? "N/A": message.desired_gap.toFixed(1), //Desired Gap
+                             message.actual_gap==undefined ? "N/A": message.actual_gap.toFixed(1) , //actual gap
+                             message.leader_id, //leader_vehicle_id = leader_id
+                             message.platoon_id, //platoon_id
                             (message.leader_cmd_speed * METER_TO_MPH).toFixed(2) //platoon_applied_speed = leader_cmd_speed
                             );
       }

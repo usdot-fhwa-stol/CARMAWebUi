@@ -65,8 +65,8 @@ function subscribeLaneChangeTopics()
      .done((successMessage)=>{
         //listener here
             listener.subscribe((message)=>{
-                let miles = message.distance_to_lanechange.toFixed(2);
-                let direction = message.direction;
+                let miles = (message.downtrack_until_lanechange*METER_TO_MILE).toFixed(1);
+                let direction = message.lane_change;
                 //update miles
                 updateLaneChange(laneChangeSVG, miles);
 
@@ -123,6 +123,32 @@ function subscribeLaneChangeTopics()
 
                     left_dot_3.classList.add('cls-gray');
                     left_dot_3.classList.remove('cls-white');
+                }
+                else if (direction == LANE_CHANGE_DIRECTION_STAY_IN_LANE) //NONE : Stay in current lane
+                {
+                    right_arrow.classList.remove('cls-blue');
+                    right_arrow.classList.add('cls-gray');
+
+                    right_dot_1.classList.remove('cls-gray');
+                    right_dot_1.classList.add('cls-white');
+
+                    right_dot_2.classList.remove('cls-gray');
+                    right_dot_2.classList.add('cls-white');
+
+                    right_dot_3.classList.remove('cls-gray');
+                    right_dot_3.classList.add('cls-white');
+
+                    left_arrow.classList.remove('cls-blue');
+                    left_arrow.classList.add('cls-gray');
+
+                    left_dot_1.classList.remove('cls-gray');
+                    left_dot_1.classList.add('cls-white');
+
+                    left_dot_2.classList.remove('cls-gray');
+                    left_dot_2.classList.add('cls-white');
+
+                    left_dot_3.classList.remove('cls-gray');
+                    left_dot_3.classList.add('cls-white');
                 }
             })
         })
